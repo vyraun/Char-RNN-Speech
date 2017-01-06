@@ -43,7 +43,9 @@ def sample(args):
         if ckpt and ckpt.model_checkpoint_path:
             saver.restore(sess, ckpt.model_checkpoint_path)
             ts = model.sample(sess, chars, vocab, args.n, args.prime, args.sample)
+            print("Sampled Output\n")
             print(ts)
+            print("Converting Text to Speech")
             tts = gTTS(text=ts, lang='en-uk')
             tts.save("ts.mp3")
             audio = MP3("ts.mp3")
@@ -51,7 +53,6 @@ def sample(args):
             print("Speaker is Getting Ready")
             mixer.init()
             mixer.music.load('ts.mp3')
-            print("Speaker Has Started")
             mixer.music.play()
             time.sleep(audio_length+5)
 
