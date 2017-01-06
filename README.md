@@ -5,6 +5,7 @@ Inspired from Andrej Karpathy's [char-rnn](https://github.com/karpathy/char-rnn)
 
 # Requirements
 - [Tensorflow](http://www.tensorflow.org)
+- pygame
 
 # Basic Usage
 To train with default parameters on the tinyshakespeare corpus, run `python train.py`.
