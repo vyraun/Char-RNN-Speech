@@ -12,6 +12,10 @@ from model import Model
 
 from six import text_type
 
+from gtts import gTTS
+from pygame import mixer
+from mutagen.mp3 import MP3
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--save_dir', type=str, default='save',
@@ -38,7 +42,18 @@ def sample(args):
         ckpt = tf.train.get_checkpoint_state(args.save_dir)
         if ckpt and ckpt.model_checkpoint_path:
             saver.restore(sess, ckpt.model_checkpoint_path)
-            print(model.sample(sess, chars, vocab, args.n, args.prime, args.sample))
+            ts = model.sample(sess, chars, vocab, args.n, args.prime, args.sample)
+            print(ts)
+            tts = gTTS(text=ts, lang='en-uk')
+            tts.save("ts.mp3")
+            audio = MP3("ts.mp3")
+            audio_length = audio.info.length
+            print("Speaker is Getting Ready")
+            mixer.init()
+            mixer.music.load('ts.mp3')
+            print("Speaker Has Started")
+            mixer.music.play()
+            time.sleep(audio_length+5)
 
 if __name__ == '__main__':
     main()
