@@ -1,5 +1,5 @@
 # char-rnn-tensorflow with Speech
-Multi-layer Recurrent Neural Networks (LSTM, RNN) for character-level language models in Python using Tensorflow.
+Speech based on Multi-layer Recurrent Neural Networks (LSTM, RNN) for character-level language models in Python using Tensorflow.
 
 Sampled text output is converted to Speech and played.
 
